@@ -18,12 +18,11 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
-        port: 2222
+        port: 21098
         script: |
-          cd ${{ secrets.PROJECT_PATH }}
-          
           # Update repository using HTTPS
-          git remote set-url origin https://${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}.git
+          cd /home/runner/work/_temp/_github_home
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/mahmoudrashidy90/corian-castle-designer.git
           git pull origin main
           
           # Install/update dependencies
@@ -32,11 +31,11 @@ jobs:
           # Restart application (if using supervisor)
           # sudo systemctl restart your-app-name
           
-          # or restart Apache/Nginx if needed
+          # or restart apache/nginx if needed
           # sudo systemctl reload apache2
           
           echo "🎉 Deployment completed successfully!"
           
     - name: Notify deployment status
       run: |
-        echo "🚀 Auto-deployment completed!"
+        echo "✅ SSH Deployment with port 21098 completed!"
