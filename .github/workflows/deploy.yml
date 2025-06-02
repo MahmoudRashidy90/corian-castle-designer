@@ -19,6 +19,8 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
         port: 21098
+        timeout: 30s
+        command_timeout: 10s
         script: |
           echo "🚀 Starting deployment..."
           
