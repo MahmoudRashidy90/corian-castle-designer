@@ -27,11 +27,22 @@ jobs:
           # Navigate to web directory
           cd public_html || cd ~/public_html
           
-          # Show current directory and files
-          echo "📂 Current directory:"
-          pwd
-          echo "📋 Files in directory:"
-          ls -la
+          # Backup current files (optional)
+          if [ -d "backup" ]; then
+            rm -rf backup
+          fi
+          mkdir backup
+          cp -r * backup/ 2>/dev/null || true
           
-          echo "✅ SSH Connection successful!"
-          echo "🎉 Basic deployment test completed!"
+          # Download latest code from GitHub
+          curl -L https://github.com/mahmoudrashidy90/corian-castle-designer/archive/main.zip -o latest.zip
+          
+          # Extract and deploy
+          unzip -q latest.zip
+          cp -r corian-castle-designer-main/* .
+          
+          # Cleanup
+          rm -rf latest.zip corian-castle-designer-main
+          
+          echo "✅ Files updated successfully!"
+          echo "🎉 Deployment completed!"
