@@ -1,0 +1,62 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/coriymfy/public_html/designer.coriancastle.com"
+PassengerBaseURI "/"
+PassengerPython "/home/coriymfy/virtualenv/public_html/designer.coriancastle.com/3.12/bin/python"
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+# BEGIN LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+<IfModule LiteSpeed>
+RewriteEngine on
+CacheLookup on
+RewriteRule .* - [E=Cache-Control:no-autoflush]
+RewriteRule litespeed/debug/.*\.log$ - [F,L]
+RewriteRule \.litespeed_conf\.dat - [F,L]
+### marker ASYNC start ###
+RewriteCond %{REQUEST_URI} /wp-admin/admin-ajax\.php
+RewriteCond %{QUERY_STRING} action=async_litespeed
+RewriteRule .* - [E=noabort:1]
+### marker ASYNC end ###
+### marker CACHE RESOURCE start ###
+RewriteRule wp-content/.*/[^/]*(responsive|css|js|dynamic|loader|fonts)\.php - [E=cache-control:max-age=3600]
+### marker CACHE RESOURCE end ###
+### marker DROPQS start ###
+CacheKeyModify -qs:fbclid
+CacheKeyModify -qs:gclid
+CacheKeyModify -qs:utm*
+CacheKeyModify -qs:_ga
+### marker DROPQS end ###
+</IfModule>
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END LSCACHE
+# BEGIN NON_LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END NON_LSCACHE
+RewriteEngine On
+# تعطيل عرض محتويات المجلد
+Options -Indexes
+# إعادة توجيه الصفحة الرئيسية من أي مكان
+RewriteRule ^الصفحة-الرئيسية/?$ /calculator/ [R=301,L]
+RewriteRule ^الرئيسية/?$ /calculator/ [R=301,L]
+RewriteRule ^index/?$ /calculator/ [R=301,L]
+RewriteRule ^home/?$ /calculator/ [R=301,L]
+# صفحات الحاسبة - بدون .html
+RewriteRule ^حاسبة-المغسلة/?$ /calculator/sink-calculator [R=301,L]
+RewriteRule ^حاسبة-المطبخ/?$ /calculator/kitchen-calculator [R=301,L]
+RewriteRule ^حاسبة-الكاونتر/?$ /calculator/counter-calculator [R=301,L]
+RewriteRule ^حاسبة-طاولة-التلفزيون/?$ /calculator/tv-unit-calculator [R=301,L]
+RewriteRule ^حاسبة-الدولاب/?$ /calculator/wardrobe-calculator [R=301,L]
+RewriteRule ^حاسبة-الرفوف/?$ /calculator/shelf-calculator [R=301,L]
+# إعادة توجيه للمجلد الرئيسي للحاسبة
+RewriteRule ^calculator/?$ /calculator/index.html [L]
+# الروابط القديمة
+RewriteRule ^sink_calculator\.html$ /calculator/sink-calculator [R=301,L]
+RewriteRule ^kitchen_calculator\.html$ /calculator/kitchen-calculator [R=301,L]
+RewriteRule ^counter_calculator\.html$ /calculator/counter-calculator [R=301,L]
+RewriteRule ^tv_unit_calculator\.html$ /calculator/tv-unit-calculator [R=301,L]
+RewriteRule ^wardrobe_calculator\.html$ /calculator/wardrobe-calculator [R=301,L]
+RewriteRule ^shelf_calculator\.html$ /calculator/shelf-calculator [R=301,L]
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END

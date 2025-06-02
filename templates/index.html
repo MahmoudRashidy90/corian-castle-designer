@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صممها بنفسك - كوريان كاسيل</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(196, 150, 90, 0.1);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(196, 150, 90, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            text-align: center;
+            flex: 1;
+        }
+
+        .logo-section h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #C4965A, #D4A574);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .logo-section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        .header-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(196, 150, 90, 0.3);
+            color: #C4965A;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(196, 150, 90, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .progress-steps {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(196, 150, 90, 0.2);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .step-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: rgba(196, 150, 90, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .step-arrow {
+            color: #C4965A;
+            margin: 0 10px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, #C4965A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(196, 150, 90, 0.5); }
+            to { text-shadow: 0 0 30px rgba(196, 150, 90, 0.8); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #C4965A;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(196, 150, 90, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(196, 150, 90, 0.1), transparent);
+            transform: rotate(-45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .option-card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(-45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(-45deg); }
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            border-color: #C4965A;
+            box-shadow: 0 20px 40px rgba(196, 150, 90, 0.3);
+        }
+
+        .option-icon {
+            font-size: 3.5rem;
+            color: #C4965A;
+            margin-bottom: 20px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .option-card:nth-child(2) .option-icon {
+            animation-delay: -1.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .option-card h3 {
+            font-size: 1.8rem;
+            color: #D4A574;
+            margin-bottom: 15px;
+        }
+
+        .option-card p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #C4965A, #D4A574);
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(196, 150, 90, 0.4);
+        }
+
+        .callout-banner {
+            background: linear-gradient(45deg, #C4965A, #D4A574);
+            color: #1a1a1a;
+            text-align: center;
+            padding: 20px;
+            margin: 60px 0;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .callout-banner::before {
+            content: '🌟';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .callout-banner::after {
+            content: '🌟';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .features {
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            color: #C4965A;
+            margin-bottom: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(196, 150, 90, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(196, 150, 90, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: #C4965A;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h4 {
+            color: #D4A574;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(196, 150, 90, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-brand {
+            color: #C4965A;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .options { grid-template-columns: 1fr; gap: 30px; }
+            .option-card { padding: 30px 20px; }
+            .container { padding: 0 15px; }
+            .header-content { flex-direction: column; gap: 15px; }
+            .steps-container { flex-direction: column; gap: 10px; }
+            .step-arrow { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1>كوريان كاسيل</h1>
+                    <p>رواد تصنيع وتشكيل الكورين بالكويت</p>
+                </div>
+                <div class="header-btns">
+                    <a href="#gallery" class="header-btn">
+                        <i class="fas fa-images"></i>
+                        شوف شغلنا السابق
+                    </a>
+                    <a href="https://wa.me/96599123456?text=أطلب عرض سعر مخصص من كوريان كاسيل" class="header-btn">
+                        <i class="fas fa-calculator"></i>
+                        أطلب عرض سعر مخصص
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-steps">
+        <div class="container">
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <span>اختار نوع الخدمة</span>
+                </div>
+                <i class="fas fa-arrow-left step-arrow"></i>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <span>عبي النموذج</span>
+                </div>
+                <i class="fas fa-arrow-left step-arrow"></i>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <span>استلم التصميم</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>صمّمها بنفسك مع كوريان كاسيل</h1>
+                <p class="hero-subtitle">عندك تصميم؟ تمام. ما عندك؟ إحنا نخليچ تصممه على ذوقچ، خطوة بخطوة، بكل سهولة.</p>
+                <p>مع كوريان كاسيل، نوفّر لج حريّة الاختيار الكاملة؛ يا ترفعلنا تصميمچ الجاهز، أو تصممه بنفسچ من الصفر عن طريق أداة تفاعلية سهلة وسريعة. وإحنا نحوله لج واقع تفتخرين فيه.</p>
+
+                <div class="options">
+                    <div class="option-card">
+                        <i class="fas fa-upload option-icon"></i>
+                        <h3>🗂️ عندي تصميم جاهز</h3>
+                        <p>ارفع تصميمچ، وإحنا نضمن لج تنفيذه بأعلى جودة، بس يوصلنا رسالة فيها كل تفاصيل التشطيب، وبعدها نبدأ الشغل على طول.</p>
+                        <a href="/upload-design" class="btn">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            ارفع التصميم
+                        </a>
+                    </div>
+
+                    <div class="option-card">
+                        <i class="fas fa-pencil-ruler option-icon"></i>
+                        <h3>✍️ ما عندي تصميم</h3>
+                        <p>هذي فرصتك! صمّم مغسلتك بنفسچ على راحتچ، اختاري الشكل، المقاس، واللون اللي يعجبچ، وإحنا نحوله لج واقع.</p>
+                        <a href="/designer" class="btn">
+                            <i class="fas fa-magic"></i>
+                            أبي أبدأ التصميم
+                        </a>
+                    </div>
+                </div>
+
+                <div class="callout-banner">
+                    كوريان كاسيل – نسوي لك اللي في بالك، ونزيد عليه لمسة إبداع تليق فيچ
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>ليش تختار كوريان كاسيل؟</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-gem"></i>
+                        <h4>كوريان أصلي 100%</h4>
+                        <p>مواد عالية الجودة مستوردة من كوريا مع ضمان طويل</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-tools"></i>
+                        <h4>صنع في الكويت</h4>
+                        <p>ننتج مشروعك في الكويت بأيدي كويتية ماهرة ومتخصصة</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-robot"></i>
+                        <h4>ذكاء اصطناعي متطور</h4>
+                        <p>يحول رسمتك لتصميم واقعي بدقة عالية وتفاصيل مذهلة</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-home"></i>
+                        <h4>تشكيلة متنوعة</h4>
+                        <p>مطابخ، مغاسل، كاونترات، دواليب تلفزيون ودريسنق رووم</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-whatsapp"></i>
+                        <h4>متابعة مباشرة</h4>
+                        <p>نتواصل معك على الواتساب في كل خطوة</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>تسليم سريع</h4>
+                        <p>من الرسمة للتسليم في أقل وقت ممكن</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-brand">كوريان كاسيل</div>
+            <p>&copy; 2025 جميع الحقوق محفوظة - رواد تصنيع وتشكيل الكورين بالكويت</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards
+            document.querySelectorAll('.option-card, .feature-item').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Add click ripple effect
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
