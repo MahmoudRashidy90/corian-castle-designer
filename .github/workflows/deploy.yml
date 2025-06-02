@@ -21,19 +21,16 @@ jobs:
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         port: 21098
         script: |
-          # Simple file copy approach
           echo "🚀 Starting deployment..."
           
           # Navigate to web directory
-          cd public_html || cd /home/${{ secrets.USERNAME }}/public_html || cd ~/public_html
+          cd public_html || cd ~/public_html
           
-          # Show current directory
+          # Show current directory and files
+          echo "📂 Current directory:"
           pwd
+          echo "📋 Files in directory:"
           ls -la
           
-          echo "✅ Connected to server successfully!"
-          echo "🎉 Deployment completed!"
-          
-    - name: Notify deployment status
-      run: |
-        echo "✅ SSH Deployment with port 21098 completed!"
+          echo "✅ SSH Connection successful!"
+          echo "🎉 Basic deployment test completed!"
