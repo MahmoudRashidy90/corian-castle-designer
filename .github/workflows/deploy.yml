@@ -16,12 +16,19 @@ jobs:
       
     - name: Setup SSH
       run: |
+        sudo apt-get update && sudo apt-get install -y sshpass expect
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+        # Add key with passphrase using expect
+        expect << 'EOF'
+        spawn ssh-add ~/.ssh/id_rsa
+        expect "Enter passphrase"
+        send "${{ secrets.SSH_PASSPHRASE }}\r"
+        expect eof
+        EOF
         
     - name: Add server to known hosts
       run: |
