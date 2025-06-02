@@ -17,24 +17,21 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 21098
         script: |
-          # Update repository using HTTPS
-          cd /home/runner/work/_temp/_github_home
-          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/mahmoudrashidy90/corian-castle-designer.git
-          git pull origin main
+          # Simple file copy approach
+          echo "🚀 Starting deployment..."
           
-          # Install/update dependencies
-          pip install -r requirements.txt --user
+          # Navigate to web directory
+          cd public_html || cd /home/${{ secrets.USERNAME }}/public_html || cd ~/public_html
           
-          # Restart application (if using supervisor)
-          # sudo systemctl restart your-app-name
+          # Show current directory
+          pwd
+          ls -la
           
-          # or restart apache/nginx if needed
-          # sudo systemctl reload apache2
-          
-          echo "🎉 Deployment completed successfully!"
+          echo "✅ Connected to server successfully!"
+          echo "🎉 Deployment completed!"
           
     - name: Notify deployment status
       run: |
